@@ -1,0 +1,22 @@
+# Ignorar arquivos de compilação e resultados
+bin/
+obj/
+
+# Ignorar arquivos de configuração de usuário
+*.user
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar arquivos temporários
+*.tmp
+
+# Ignorar arquivos de backup
+*~
+
+# Ignorar arquivos de pacote do NuGet
+*.nupkg
+/packages/
+
+# Ignorar o diretório VSCode
+.vscode/
