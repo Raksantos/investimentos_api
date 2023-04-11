@@ -31,20 +31,17 @@ namespace InvestimentosApi.Migrations
 
                     b.Property<string>("CPF")
                         .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("character varying(11)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("SaldoDisponivel")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<double>("SaldoDisponivel")
+                        .HasColumnType("double precision");
 
-                    b.Property<string>("SaldoInvestido")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<double>("SaldoInvestido")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 

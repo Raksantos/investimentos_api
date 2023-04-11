@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InvestimentosApi.Migrations
 {
     [DbContext(typeof(ContaContext))]
-    [Migration("20230411030923_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230411034124_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,20 +34,17 @@ namespace InvestimentosApi.Migrations
 
                     b.Property<string>("CPF")
                         .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("character varying(11)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("SaldoDisponivel")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<double>("SaldoDisponivel")
+                        .HasColumnType("double precision");
 
-                    b.Property<string>("SaldoInvestido")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<double>("SaldoInvestido")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 

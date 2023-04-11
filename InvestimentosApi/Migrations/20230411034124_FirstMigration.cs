@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InvestimentosApi.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class FirstMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,9 +18,9 @@ namespace InvestimentosApi.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Nome = table.Column<string>(type: "text", nullable: false),
-                    CPF = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: false),
-                    SaldoDisponivel = table.Column<string>(type: "text", nullable: false),
-                    SaldoInvestido = table.Column<string>(type: "text", nullable: false)
+                    CPF = table.Column<string>(type: "text", nullable: false),
+                    SaldoDisponivel = table.Column<double>(type: "double precision", nullable: false),
+                    SaldoInvestido = table.Column<double>(type: "double precision", nullable: false)
                 },
                 constraints: table =>
                 {

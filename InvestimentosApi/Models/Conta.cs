@@ -10,8 +10,8 @@ public class Conta
     [Required(ErrorMessage = "O nome é obrigatório")]
     public string Nome { get; set; }
     [Required(ErrorMessage = "O CPF é obrigatório")]
-    [MaxLength(11, ErrorMessage = "O CPF deve ter 11 caracteres")]
+    [RegularExpression(@"^\d{3}\.\d{3}\.\d{3}\-\d{2}$", ErrorMessage = "O CPF deve estar no formato 000.000.000-00")]
     public string CPF { get; set; }
-    public string SaldoDisponivel { get; set; }
-    public string SaldoInvestido { get; set; }
+    public double SaldoDisponivel { get; set; }
+    public double SaldoInvestido { get; set; }
 }
