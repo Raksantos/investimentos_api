@@ -2,7 +2,9 @@ run:
 	dotnet run --project InvestimentosApi/InvestimentosApi.csproj
 
 docker:
-	docker-compose -f docker-compose.yml up --build -d
+	docker-compose up -d db
+	dotnet ef database update --project InvestimentosApi/InvestimentosApi.csproj
+	docker-compose up -d app
 
 down:
 	docker-compose -f docker-compose.yml down
