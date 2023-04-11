@@ -20,3 +20,5 @@ obj/
 
 # Ignorar o diretório VSCode
 .vscode/
+
+.env
