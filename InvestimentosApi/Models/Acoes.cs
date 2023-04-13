@@ -14,4 +14,13 @@ public class Acoes
     [Required(ErrorMessage = "A moeda é obrigatória")]
     public string MoedaUsada { get; set; }
     public double PrecoMercado { get; set; }
+
+    public Acoes(string id, string nomeCurto, string nomeLongo, string moedaUsada, double precoMercado)
+    {
+        Id = id;
+        NomeCurto = nomeCurto;
+        NomeLongo = nomeLongo;
+        MoedaUsada = moedaUsada;
+        PrecoMercado = precoMercado;
+    }
 }

@@ -7,7 +7,7 @@ public class DatabaseCotext : DbContext
 {
     public DatabaseCotext(DbContextOptions<DatabaseCotext> options) : base(options)
     {
-        
+   
     }
 
     public DbSet<Conta> Contas { get; set; }
