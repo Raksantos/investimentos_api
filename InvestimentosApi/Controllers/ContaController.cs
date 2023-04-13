@@ -7,8 +7,8 @@ namespace InvestimentosApi.Controllers;
 [Route("[controller]")]
 public class ContaController : ControllerBase
 {
-    private ContaContext _context;
-    public ContaController(ContaContext context)
+    private DatabaseCotext _context;
+    public ContaController(DatabaseCotext context)
     {
         _context = context;
     }
