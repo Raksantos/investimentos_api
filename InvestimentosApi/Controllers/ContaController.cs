@@ -49,7 +49,7 @@ public class ContaController : ControllerBase
 
         Console.WriteLine(contaJson);
 
-        return Ok(contaJson);
+        return Content(contaJson, "application/json");
     }
 
     [HttpPatch("{id}/valor/{valor}")]
@@ -61,5 +61,15 @@ public class ContaController : ControllerBase
         conta.SaldoDisponivel += valor;
         _context.SaveChanges();
         return Ok(conta);
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        var conta = _context.Contas.FirstOrDefault(conta => conta.Id == id);
+        if (conta == null) return NotFound();
+        _context.Contas.Remove(conta);
+        _context.SaveChanges();
+        return Ok();
     }
 }
