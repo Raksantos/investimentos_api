@@ -24,16 +24,11 @@ public class ContaController : ControllerBase
         return BadRequest();
     }
 
-    [HttpGet]
-    public IEnumerable<Acoes> List([FromQuery] int skip = 0, [FromQuery] int take = 10)
-    {
-        return _context.Acoes.Skip(skip).Take(take);
-    }
-
     [HttpGet("{id}")]
-    public IActionResult? GetById(string id)
+    public IActionResult? GetById(int id)
     {
-        var conta = _context.Acoes.FirstOrDefault(conta => conta.Id == id);
+        Console.Write(id);
+        var conta = _context.Contas.FirstOrDefault(conta => conta.Id == id);
         if (conta == null) return NotFound();
         return Ok(conta);
     }
