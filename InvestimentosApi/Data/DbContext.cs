@@ -15,4 +15,5 @@ public class DatabaseCotext : DbContext
     public DbSet<Acoes> Acoes { get; set; }
     public DbSet<FundoImobiliario> FundosImobiliarios { get; set; }
     public DbSet<TesouroDireto> TesouroDiretos { get; set; }
+    public DbSet<Carteira> Carteiras { get; set; }
 }

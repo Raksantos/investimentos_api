@@ -16,14 +16,31 @@ namespace InvestimentosApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
-                    NomeCurto = table.Column<string>(type: "text", nullable: false),
                     NomeLongo = table.Column<string>(type: "text", nullable: false),
+                    NomeCurto = table.Column<string>(type: "text", nullable: false),
                     MoedaUsada = table.Column<string>(type: "text", nullable: false),
                     PrecoMercado = table.Column<double>(type: "double precision", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Acoes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Carteiras",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ContaId = table.Column<int>(type: "integer", nullable: false),
+                    AtivoId = table.Column<string>(type: "text", nullable: false),
+                    TipoAtivo = table.Column<string>(type: "text", nullable: false),
+                    Quantidade = table.Column<int>(type: "integer", nullable: false),
+                    ValorTotal = table.Column<double>(type: "double precision", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Carteiras", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -47,7 +64,7 @@ namespace InvestimentosApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
-                    Nome = table.Column<string>(type: "text", nullable: false),
+                    NomeCurto = table.Column<string>(type: "text", nullable: false),
                     MoedaUsada = table.Column<string>(type: "text", nullable: false),
                     PrecoMercado = table.Column<double>(type: "double precision", nullable: false)
                 },
@@ -92,6 +109,9 @@ namespace InvestimentosApi.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Acoes");
+
+            migrationBuilder.DropTable(
+                name: "Carteiras");
 
             migrationBuilder.DropTable(
                 name: "Contas");

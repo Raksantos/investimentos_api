@@ -46,6 +46,36 @@ namespace InvestimentosApi.Migrations
                     b.ToTable("Acoes");
                 });
 
+            modelBuilder.Entity("InvestimentosApi.Models.Carteira", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AtivoId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ContaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("TipoAtivo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double>("ValorTotal")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Carteiras");
+                });
+
             modelBuilder.Entity("InvestimentosApi.Models.Conta", b =>
                 {
                     b.Property<int>("Id")
@@ -82,7 +112,7 @@ namespace InvestimentosApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("NomeCurto")
                         .IsRequired()
                         .HasColumnType("text");
 
