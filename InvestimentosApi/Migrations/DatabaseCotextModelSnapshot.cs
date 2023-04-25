@@ -82,11 +82,7 @@ namespace InvestimentosApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("NomeCurto")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NomeLongo")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("text");
 

@@ -7,11 +7,18 @@ public class Cripto
     [Key]
     [Required]
     public string ?Id { get; set; }
-    [Required(ErrorMessage = "O nome curto é obrigatório")]
-    public string ?NomeCurto { get; set; }
-    [Required(ErrorMessage = "O nome longo é obrigatório")]
-    public string ?NomeLongo { get; set; }
-    [Required(ErrorMessage = "A moeda é obrigatória")]
+    [Required(ErrorMessage = "O nome é obrigatório")]
+    public string ?Nome { get; set; }
+    [Required]
     public string ?MoedaUsada { get; set; }
+    [Required]
     public double PrecoMercado { get; set; }
+
+    public Cripto(string ?id, string ?nome, string ?moedaUsada, double precoMercado)
+    {
+        Id = id;
+        Nome = nome;
+        MoedaUsada = moedaUsada;
+        PrecoMercado = precoMercado;
+    }
 }

@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InvestimentosApi.Migrations
 {
     [DbContext(typeof(DatabaseCotext))]
-    [Migration("20230413165407_IniciandoDb")]
-    partial class IniciandoDb
+    [Migration("20230425230300_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,11 +85,7 @@ namespace InvestimentosApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("NomeCurto")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NomeLongo")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("text");
 

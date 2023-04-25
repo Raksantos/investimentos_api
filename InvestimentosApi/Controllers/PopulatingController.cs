@@ -60,6 +60,46 @@ public class PopulatingController : ControllerBase
             }
         }
 
+        List<string> coins = new List<string> { "BTC", "BTT1", "BTG", "BTS", "BTM", "BTC2", "BTX" };
+
+        foreach (string coin in coins){
+            var request = new HttpRequestMessage(new HttpMethod("GET"), $"https://brapi.dev/api/v2/crypto?coin={coin}");
+            var response = await httpClient.SendAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var data = JObject.Parse(json);
+
+                Console.WriteLine($"Criptomoeda: {data["coins"][0]["coin"]}");
+                Console.WriteLine($"Nome: {data["coins"][0]["coinName"]}");
+                Console.WriteLine($"Preço atual: {data["coins"][0]["regularMarketPrice"]}");
+                Console.WriteLine($"Variação nas últimas 24h: {data["coins"][0]["regularMarketChangePercent"]}");
+                Console.WriteLine($"Volume negociado nas últimas 24h: {data["coins"][0]["regularMarketVolume"]}");
+
+                if (data["coins"]?[0]?["regularMarketPrice"]?.ToString() != null)
+                {
+                    string symbol = data["coins"]?[0]?["coin"]?.ToString() ?? "";
+                    var acao = _context.Acoes.FirstOrDefault(acoes => acoes.Id == symbol);
+
+                    if (acao == null)
+                    {
+                        Cripto criptoInserir = new Cripto(
+                            data["coins"]?[0]?["coin"]?.ToString() ?? "",
+                            data["coins"]?[0]?["coinName"]?.ToString() ?? "",
+                            data["coins"]?[0]?["currency"]?.ToString() ?? "",
+                            Convert.ToDouble(data["coins"]?[0]?["regularMarketPrice"]?.ToString())
+                        );
+
+                        _context.Criptos.Add(criptoInserir);
+                        _context.SaveChanges();
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Erro ao obter cotação da criptomoeda {coin}: {response.StatusCode}");
+            }
+        }
         return Ok("Banco populado com sucesso");
     }
 }

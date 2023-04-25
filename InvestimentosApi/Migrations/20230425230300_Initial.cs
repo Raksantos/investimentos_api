@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InvestimentosApi.Migrations
 {
     /// <inheritdoc />
-    public partial class IniciandoDb : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -47,8 +47,7 @@ namespace InvestimentosApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
-                    NomeCurto = table.Column<string>(type: "text", nullable: false),
-                    NomeLongo = table.Column<string>(type: "text", nullable: false),
+                    Nome = table.Column<string>(type: "text", nullable: false),
                     MoedaUsada = table.Column<string>(type: "text", nullable: false),
                     PrecoMercado = table.Column<double>(type: "double precision", nullable: false)
                 },
