@@ -27,9 +27,19 @@ public class ContaController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult? GetById(int id)
     {
-        Console.Write(id);
         var conta = _context.Contas.FirstOrDefault(conta => conta.Id == id);
         if (conta == null) return NotFound();
+        return Ok(conta);
+    }
+
+    [HttpPatch("{id}/valor/{valor}")]
+    public IActionResult Deposita(int id, int valor)
+    {   
+        var conta = _context.Contas.FirstOrDefault(conta => conta.Id == id);
+        Console.WriteLine("Conta" + conta);
+        if (conta == null) return NotFound();
+        conta.SaldoDisponivel += valor;
+        _context.SaveChanges();
         return Ok(conta);
     }
 }

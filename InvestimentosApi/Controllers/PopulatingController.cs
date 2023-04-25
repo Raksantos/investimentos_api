@@ -70,12 +70,6 @@ public class PopulatingController : ControllerBase
                 var json = await response.Content.ReadAsStringAsync();
                 var data = JObject.Parse(json);
 
-                Console.WriteLine($"Criptomoeda: {data["coins"][0]["coin"]}");
-                Console.WriteLine($"Nome: {data["coins"][0]["coinName"]}");
-                Console.WriteLine($"Preço atual: {data["coins"][0]["regularMarketPrice"]}");
-                Console.WriteLine($"Variação nas últimas 24h: {data["coins"][0]["regularMarketChangePercent"]}");
-                Console.WriteLine($"Volume negociado nas últimas 24h: {data["coins"][0]["regularMarketVolume"]}");
-
                 if (data["coins"]?[0]?["regularMarketPrice"]?.ToString() != null)
                 {
                     string symbol = data["coins"]?[0]?["coin"]?.ToString() ?? "";
