@@ -54,4 +54,32 @@ public class AcoesController : ControllerBase
         _context.SaveChanges();
         return Ok(conta);
     }
+
+    [HttpPatch("{id_conta}/acao/{id_acao}/quantidade/{qtd}/vender")]
+    public IActionResult? Vender(int id_conta, string id_acao, int qtd){
+        var conta = _context.Contas.FirstOrDefault(conta => conta.Id == id_conta);
+        var acao = _context.Acoes.FirstOrDefault(acao => acao.Id == id_acao);
+        
+        if (conta == null || acao == null) return NotFound();
+        
+        //verifica se a carteira já possui o ativo
+        var carteira = _context.Carteiras.FirstOrDefault(carteira => carteira.ContaId == conta.Id && carteira.AtivoId == acao.Id);
+
+        if (carteira == null || carteira.Quantidade < qtd) return BadRequest();
+
+        conta.SaldoDisponivel += acao.PrecoMercado * qtd;
+
+        conta.SaldoInvestido -= acao.PrecoMercado * qtd;
+
+        carteira.Quantidade -= qtd;
+        carteira.ValorTotal -= acao.PrecoMercado * qtd;
+
+        if (carteira.Quantidade == 0) _context.Carteiras.Remove(carteira);
+
+        _context.SaveChanges();
+
+        if (_context.Carteiras.Where(carteira => carteira.ContaId == conta.Id).Count() == 0) conta.SaldoInvestido = 0;
+
+        return Ok(conta);
+    }
 }

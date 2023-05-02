@@ -1,6 +1,9 @@
 run:
 	dotnet run --project InvestimentosApi/InvestimentosApi.csproj
 
+watch:
+	dotnet watch --project InvestimentosApi/InvestimentosApi.csproj
+
 docker:
 	docker-compose up -d db
 	dotnet ef database update --project InvestimentosApi/InvestimentosApi.csproj
