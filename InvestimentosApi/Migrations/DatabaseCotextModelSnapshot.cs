@@ -124,46 +124,9 @@ namespace InvestimentosApi.Migrations
                     b.ToTable("Criptos");
                 });
 
-            modelBuilder.Entity("InvestimentosApi.Models.FundoImobiliario", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
-
-                    b.Property<string>("MoedaUsada")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NomeCurto")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NomeLongo")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<double>("PrecoMercado")
-                        .HasColumnType("double precision");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FundosImobiliarios");
-                });
-
             modelBuilder.Entity("InvestimentosApi.Models.TesouroDireto", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("text");
-
-                    b.Property<string>("MoedaUsada")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NomeCurto")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NomeLongo")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<double>("PrecoMercado")

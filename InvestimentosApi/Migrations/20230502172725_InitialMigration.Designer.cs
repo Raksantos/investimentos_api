@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InvestimentosApi.Migrations
 {
     [DbContext(typeof(DatabaseCotext))]
-    [Migration("20230425212804_Initial")]
-    partial class Initial
+    [Migration("20230502172725_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,46 +127,9 @@ namespace InvestimentosApi.Migrations
                     b.ToTable("Criptos");
                 });
 
-            modelBuilder.Entity("InvestimentosApi.Models.FundoImobiliario", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
-
-                    b.Property<string>("MoedaUsada")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NomeCurto")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NomeLongo")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<double>("PrecoMercado")
-                        .HasColumnType("double precision");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FundosImobiliarios");
-                });
-
             modelBuilder.Entity("InvestimentosApi.Models.TesouroDireto", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("text");
-
-                    b.Property<string>("MoedaUsada")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NomeCurto")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("NomeLongo")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<double>("PrecoMercado")

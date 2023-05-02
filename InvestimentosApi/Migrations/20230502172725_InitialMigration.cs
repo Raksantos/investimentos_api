@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InvestimentosApi.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -74,28 +74,10 @@ namespace InvestimentosApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FundosImobiliarios",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "text", nullable: false),
-                    NomeCurto = table.Column<string>(type: "text", nullable: false),
-                    NomeLongo = table.Column<string>(type: "text", nullable: false),
-                    MoedaUsada = table.Column<string>(type: "text", nullable: false),
-                    PrecoMercado = table.Column<double>(type: "double precision", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FundosImobiliarios", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "TesouroDiretos",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
-                    NomeCurto = table.Column<string>(type: "text", nullable: false),
-                    NomeLongo = table.Column<string>(type: "text", nullable: false),
-                    MoedaUsada = table.Column<string>(type: "text", nullable: false),
                     PrecoMercado = table.Column<double>(type: "double precision", nullable: false)
                 },
                 constraints: table =>
@@ -118,9 +100,6 @@ namespace InvestimentosApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "Criptos");
-
-            migrationBuilder.DropTable(
-                name: "FundosImobiliarios");
 
             migrationBuilder.DropTable(
                 name: "TesouroDiretos");

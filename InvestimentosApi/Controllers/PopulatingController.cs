@@ -65,7 +65,6 @@ public class PopulatingController : ControllerBase
         foreach (string coin in coins){
             var request = new HttpRequestMessage(new HttpMethod("GET"), $"https://brapi.dev/api/v2/crypto?coin={coin}");
             var response = await httpClient.SendAsync(request);
-            Console.WriteLine(response.IsSuccessStatusCode);
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
@@ -93,6 +92,40 @@ public class PopulatingController : ControllerBase
             else
             {
                 Console.WriteLine($"Erro ao obter cotação da criptomoeda {coin}: {response.StatusCode}");
+            }
+        }
+
+        List<string> tesouro_direto = new List<string> {"brazil"};
+
+        foreach (string tesouro in tesouro_direto){
+            var request = new HttpRequestMessage(new HttpMethod("GET"), $"https://brapi.dev/api/v2/prime-rate?country={tesouro}&historical=false&start=29%2F10%2F2022&end=29%2F10%2F2022&sortBy=date&sortOrder=desc");
+            var response = await httpClient.SendAsync(request);
+            Console.WriteLine(response.Content.ReadAsStringAsync());
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var data = JObject.Parse(json);
+
+                if (data["prime-rate"]?[0]?["value"]?.ToString() != null)
+                {
+                    string symbol = data["bonds"]?[0]?["bond"]?.ToString() ?? "";
+                    var tesouros_diretos = _context.TesouroDiretos.FirstOrDefault(tesouros_diretos => tesouros_diretos.Id == symbol);
+
+                    if (tesouros_diretos == null)
+                    {
+                        TesouroDireto tesouroInserir = new TesouroDireto(
+                            tesouro,
+                            Convert.ToDouble(data["prime-rate"]?[0]?["value"])
+                        );
+
+                        _context.TesouroDiretos.Add(tesouroInserir);
+                        _context.SaveChanges();
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Erro ao obter cotação do tesouro direto {tesouro}: {response.StatusCode}");
             }
         }
         return Ok("Banco populado com sucesso");

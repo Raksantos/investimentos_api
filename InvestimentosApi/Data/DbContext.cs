@@ -13,7 +13,6 @@ public class DatabaseCotext : DbContext
     public DbSet<Conta> Contas { get; set; }
     public DbSet<Cripto> Criptos { get; set; }
     public DbSet<Acoes> Acoes { get; set; }
-    public DbSet<FundoImobiliario> FundosImobiliarios { get; set; }
     public DbSet<TesouroDireto> TesouroDiretos { get; set; }
     public DbSet<Carteira> Carteiras { get; set; }
 }
